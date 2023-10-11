@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <VStack class="footer" w="$full" py="$4">
       <HStack spacing="$1">
-        <Anchor href="https://github.com/Xhofe/alist" external>
+        <Anchor href="https://discordapp.com/users/253478920626634752" external>
           {t("home.footer.powered_by")}
         </Anchor>
         <span>|</span>
