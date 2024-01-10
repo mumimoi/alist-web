@@ -72,7 +72,8 @@
     "type": "Type",
     "types": {
       "family": "Family",
-      "personal": "Personal"
+      "personal": "Personal",
+      "personal_new": "Personal new"
     }
   },
   "189Cloud": {
@@ -341,6 +342,11 @@
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
   },
+  "ILanZou": {
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "username": "Username"
+  },
   "IPFS API": {
     "endpoint": "Endpoint",
     "gateway": "Gateway",
@@ -368,6 +374,8 @@
   },
   "Local": {
     "mkdir_perm": "Mkdir perm",
+    "recycle_bin_path": "Recycle bin path",
+    "recycle_bin_path-tips": "path to recycle bin, delete permanently if empty or keep 'delete permanently'",
     "root_folder_path": "Root folder path",
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
@@ -755,6 +763,7 @@
     "FTP": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "ILanZou": {},
     "IPFS API": {},
     "Lanzou": {},
     "Local": {},
@@ -812,6 +821,7 @@
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Local": "Local",
