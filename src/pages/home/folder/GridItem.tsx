@@ -1,4 +1,4 @@
-import { Center, VStack, Icon, Text, Checkbox } from "@hope-ui/solid"
+import { Center, VStack, Icon, Text } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
@@ -14,6 +14,11 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import {
+  ItemCheckbox,
+  useOpenItemWithCheckbox,
+  useSelectWithMouse,
+} from "./helper"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -34,6 +39,8 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   )
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
+  const { isMouseSupported } = useSelectWithMouse()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -44,7 +51,9 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       }}
     >
       <VStack
-        class="grid-item"
+        classList={{ selected: !!props.obj.selected }}
+        class="grid-item viselect-item"
+        data-index={props.index}
         w="$full"
         p="$1"
         spacing="$1"
@@ -56,12 +65,22 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-ignore
-        on:click={(e: PointerEvent) => {
+        cursor={
+          !isMouseSupported() && (!checkboxOpen() || isShouldOpenItem())
+            ? "pointer"
+            : "default"
+        }
+        bgColor={props.obj.selected ? hoverColor() : undefined}
+        on:dblclick={(e: MouseEvent) => {
+          if (!isMouseSupported()) return
+          if (e.ctrlKey || e.metaKey || e.shiftKey) return
+          to(pushHref(props.obj.name))
+        }}
+        on:click={(e: MouseEvent) => {
+          if (isMouseSupported()) return e.preventDefault()
           if (!checkboxOpen()) return
           e.preventDefault()
-          if (e.altKey) {
-            // click with alt/option key
+          if (isShouldOpenItem()) {
             to(pushHref(props.obj.name))
             return
           }
@@ -89,9 +108,17 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           class="item-thumbnail"
           h={`${parseInt(local["grid_item_size"])}px`}
           w="$full"
-          // @ts-ignore
-          on:click={(e) => {
-            if (checkboxOpen()) return
+          on:dblclick={(e: MouseEvent) => {
+            if (!isMouseSupported()) return
+            if (props.obj.type === ObjType.IMAGE) {
+              e.stopPropagation()
+              e.preventDefault()
+              bus.emit("gallery", props.obj.name)
+            }
+          }}
+          on:click={(e: MouseEvent) => {
+            if (isMouseSupported()) return
+            if (checkboxOpen() && !isShouldOpenItem()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
               e.preventDefault()
@@ -101,13 +128,12 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           pos="relative"
         >
           <Show when={showCheckbox()}>
-            <Checkbox
+            <ItemCheckbox
               pos="absolute"
               left="$1"
               top="$1"
               // colorScheme="neutral"
-              // @ts-expect-error
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}

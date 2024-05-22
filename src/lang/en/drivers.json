@@ -72,6 +72,7 @@
     "valid_duration-tips": "minutes"
   },
   "123PanShare": {
+    "accesstoken": "Accesstoken",
     "order_by": "Order by",
     "order_bys": {
       "file_name": "File name",
@@ -107,6 +108,7 @@
   },
   "189CloudPC": {
     "family_id": "Family id",
+    "family_transfer": "Family transfer",
     "no_use_ocr": "No use ocr",
     "order_by": "Order by",
     "order_bys": {
@@ -236,6 +238,8 @@
     "client_id": "Client id",
     "client_secret": "Client secret",
     "custom_crack_ua": "Custom crack ua",
+    "custom_upload_part_size": "Custom upload part size",
+    "custom_upload_part_size-tips": "0 for auto",
     "download_api": "Download api",
     "download_apis": {
       "crack": "Crack",
@@ -326,6 +330,28 @@
     "show_hidden-tips": "show hidden directories and files",
     "thumbnail": "Thumbnail",
     "thumbnail-tips": "enable thumbnail which pre-generated under .thumbnails folder"
+  },
+  "Doge": {
+    "access_key_id": "Access key id",
+    "add_filename_to_disposition": "Add filename to disposition",
+    "add_filename_to_disposition-tips": "Add filename to Content-Disposition header.",
+    "bucket": "Bucket",
+    "custom_host": "Custom host",
+    "endpoint": "Endpoint",
+    "force_path_style": "Force path style",
+    "list_object_version": "List object version",
+    "list_object_versions": {
+      "v1": "V1",
+      "v2": "V2"
+    },
+    "placeholder": "Placeholder",
+    "region": "Region",
+    "remove_bucket": "Remove bucket",
+    "remove_bucket-tips": "Remove bucket name from path when using custom host.",
+    "root_folder_path": "Root folder path",
+    "secret_access_key": "Secret access key",
+    "session_token": "Session token",
+    "sign_url_expire": "Sign url expire"
   },
   "Dropbox": {
     "client_id": "Client id",
@@ -563,7 +589,9 @@
     "address": "Address",
     "password": "Password",
     "repoId": "RepoId",
+    "repoPwd": "RepoPwd",
     "root_folder_path": "Root folder path",
+    "token": "Token",
     "username": "Username"
   },
   "Teambition": {
@@ -798,6 +826,7 @@
     "ChaoXingGroupDrive": {},
     "Cloudreve": {},
     "Crypt": {},
+    "Doge": {},
     "Dropbox": {},
     "FTP": {},
     "FeijiPan": {},
@@ -858,6 +887,7 @@
     "ChaoXingGroupDrive": "ChaoXingGroupDrive",
     "Cloudreve": "Cloudreve",
     "Crypt": "Crypt",
+    "Doge": "Doge",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
     "FeijiPan": "FeijiPan",
